@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Environment variables
+.env
+.env.*
+
+# Machine learning
+*.joblib
+*.pkl
+*.keras
+*.h5
+
+# Node
+node_modules/
+dist/
+
+# IDE
+.vscode/
