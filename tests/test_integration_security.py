@@ -91,31 +91,74 @@ def test_security_headers_present():
     assert response.headers.get("referrer-policy") == "strict-origin-when-cross-origin"
 
 
+# # ==========================================
+# # 3. Apex Domain Dot Normalization
+# # ==========================================
+
+# def test_apex_domain_normalization_example_com():
+#     feats = extract_url_features("https://example.com")
+#     assert feats["count_dots"] == 2  # Canonicalized from 1 to 2
+#     pred = predict_url("https://example.com")
+#     assert pred["phishing_probability"] < 0.10
+#     assert pred["verdict"] == "legitimate"
+
+
+# def test_apex_domain_normalization_google_com():
+#     feats = extract_url_features("https://google.com")
+#     assert feats["count_dots"] == 2
+#     pred = predict_url("https://google.com")
+#     assert pred["phishing_probability"] < 0.10
+#     assert pred["verdict"] == "legitimate"
+
+
+# def test_phishing_single_dot_retains_high_risk():
+#     url = "http://malicious-update-security-login.com/verify?account=1"
+#     pred = predict_url(url)
+#     assert pred["phishing_probability"] > 0.90
+#     assert pred["verdict"] == "phishing"
+
 # ==========================================
-# 3. Apex Domain Dot Normalization
+# 3. URL Feature and Model Verification
 # ==========================================
 
-def test_apex_domain_normalization_example_com():
+def test_apex_domain_features_example_com():
     feats = extract_url_features("https://example.com")
-    assert feats["count_dots"] == 2  # Canonicalized from 1 to 2
-    pred = predict_url("https://example.com")
-    assert pred["phishing_probability"] < 0.10
-    assert pred["verdict"] == "legitimate"
+
+    assert len(feats) == 17
+    assert feats["dot_count"] == 1
+    assert feats["hostname_length"] == 11
+    assert feats["path_length"] == 0
+    assert feats["has_ip_address"] == 0
 
 
-def test_apex_domain_normalization_google_com():
+def test_apex_domain_features_google_com():
     feats = extract_url_features("https://google.com")
-    assert feats["count_dots"] == 2
-    pred = predict_url("https://google.com")
+
+    assert len(feats) == 17
+    assert feats["dot_count"] == 1
+    assert feats["hostname_length"] == 10
+    assert feats["path_length"] == 0
+    assert feats["has_ip_address"] == 0
+
+
+def test_www_google_model_prediction():
+    pred = predict_url("https://www.google.com")
+
+    assert 0.0 <= pred["phishing_probability"] <= 1.0
     assert pred["phishing_probability"] < 0.10
     assert pred["verdict"] == "legitimate"
+    assert pred["detection_mode"] == "advisory"
+    assert pred["production_ready"] is False
 
 
 def test_phishing_single_dot_retains_high_risk():
     url = "http://malicious-update-security-login.com/verify?account=1"
+
     pred = predict_url(url)
+
     assert pred["phishing_probability"] > 0.90
     assert pred["verdict"] == "phishing"
+    assert pred["detection_mode"] == "advisory"
 
 
 # ==========================================

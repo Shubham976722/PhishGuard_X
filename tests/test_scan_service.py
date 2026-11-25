@@ -25,13 +25,13 @@ def test_successful_scan(
         "phishing_probability": 0.95,
         "risk_score": 95.0,
         "verdict": "phishing",
-        "model": "LightGBM",
+        "model": "LightGBM_Custom_17",
     }
 
     mock_explain.return_value = {
         "top_factors": [
             {
-                "feature": "count_dots",
+                "feature": "dot_count",
                 "contribution": 0.25,
             }
         ]
@@ -50,9 +50,10 @@ def test_successful_scan(
 
     assert result.id == 1
     assert result.user_id == 1
-    assert result.verdict == "phishing"
-    assert result.risk_level == "high"
+    assert result.verdict == "suspicious"
+    assert result.risk_level == "medium"
     assert result.risk_score == 95.0
+    assert result.threat_type is None
     assert result.match_type is None
     assert result.threat_sources == []
     assert result.threat_types == []

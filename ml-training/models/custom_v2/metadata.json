@@ -1,0 +1,31 @@
+{
+    "model_name": "LightGBM_Custom_17",
+    "model_version": "2.0.0",
+    "lightgbm_version": "4.6.0",
+    "feature_columns": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "tld_length",
+        "subdomain_count",
+        "letter_count",
+        "letter_ratio",
+        "digit_count",
+        "digit_ratio",
+        "special_char_count",
+        "special_char_ratio",
+        "hyphen_count",
+        "dot_count",
+        "percent_count",
+        "at_count",
+        "has_ip_address"
+    ],
+    "threshold": 0.7160938213138232,
+    "phishing_class": 1,
+    "legitimate_class": 0,
+    "feature_count": 17,
+    "best_iteration": 496,
+    "detection_mode": "advisory",
+    "production_ready": false
+}

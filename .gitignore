@@ -36,3 +36,6 @@ dist/
 
 # Application logs
 logs/
+
+# Local backups
+backup/
