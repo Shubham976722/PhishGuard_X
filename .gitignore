@@ -1,22 +1,38 @@
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 .venv/
 venv/
+.pytest_cache/
 
-# Environment variables
+# Environment variables and secrets
 .env
 .env.*
+*.env
+!.env.example
 
-# Machine learning
+# Machine learning artifacts
 *.joblib
 *.pkl
 *.keras
 *.h5
+!ml-training/models/selected/phishguard_x_selected.joblib
+
+# Generated RAG index
+backend/app/rag/storage/index.json
+
+# Large datasets
+ml-training/datasets/*.csv
+ml-training/datasets/splits/*.csv
 
 # Node
 node_modules/
 dist/
 
-# IDE
+# IDE & backups
 .vscode/
+*.backup
+*.phase8-backup
+
+# Application logs
+logs/

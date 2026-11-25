@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard X</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Header -->
+    <header class="header">
+      <div class="brand">
+        <img src="../icons/icon48.png" alt="PhishGuard X" class="logo">
+        <span class="title">PhishGuard <span class="accent">X</span></span>
+      </div>
+      <button id="settingsBtn" class="icon-btn" title="Settings & Account">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Main Scanner View -->
+    <main id="mainView" class="view">
+      <!-- Target URL Box -->
+      <div class="url-card">
+        <span class="url-label">ACTIVE TAB</span>
+        <div id="targetUrl" class="url-text" title="">Detecting URL...</div>
+      </div>
+
+      <!-- State: Loading -->
+      <div id="loadingState" class="state-container">
+        <div class="radar-spinner">
+          <div class="pulse"></div>
+          <div class="core-shield"></div>
+        </div>
+        <p class="status-msg">Analyzing URL with ML & Threat Intelligence...</p>
+      </div>
+
+      <!-- State: Result -->
+      <div id="resultState" class="state-container hidden">
+        <div id="verdictBadge" class="verdict-banner">
+          <div class="verdict-icon" id="verdictIcon"></div>
+          <div class="verdict-meta">
+            <h2 id="verdictTitle" class="verdict-title">-</h2>
+            <span id="riskLevelBadge" class="risk-badge">-</span>
+          </div>
+        </div>
+
+        <!-- Risk Score Bar -->
+        <div class="score-card">
+          <div class="score-header">
+            <span>Phishing Risk Score</span>
+            <span id="scoreValue" class="score-number">0%</span>
+          </div>
+          <div class="score-track">
+            <div id="scoreBar" class="score-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Threat Match Details -->
+        <div id="threatSection" class="details-section hidden">
+          <div class="section-title">THREAT INTELLIGENCE</div>
+          <div class="threat-info-row">
+            <span class="info-label">Match Type:</span>
+            <span id="matchTypeVal" class="info-val">-</span>
+          </div>
+          <div class="threat-info-row">
+            <span class="info-label">Sources:</span>
+            <span id="threatSourcesVal" class="info-val">-</span>
+          </div>
+        </div>
+
+        <!-- Explanation Summary -->
+        <div class="details-section">
+          <div class="section-title">AI EXPLANATION</div>
+          <div id="explanationText" class="explanation-box"></div>
+        </div>
+
+        <!-- Re-scan CTA -->
+        <div class="cta-row">
+          <button id="rescanBtn" class="btn btn-secondary">Re-Scan</button>
+        </div>
+      </div>
+
+      <!-- State: Unsupported URL -->
+      <div id="unsupportedState" class="state-container hidden">
+        <div class="info-icon">ℹ️</div>
+        <h3>Internal Page</h3>
+        <p id="unsupportedMsg" class="sub-msg">Browser system and internal URLs are exempt from scanning.</p>
+      </div>
+
+      <!-- State: Offline / Error -->
+      <div id="errorState" class="state-container hidden">
+        <div class="error-icon">⚠️</div>
+        <h3 id="errorTitle">Connection Error</h3>
+        <p id="errorMsg" class="sub-msg">Unable to reach the PhishGuard X backend.</p>
+        <button id="retryBtn" class="btn btn-primary">Retry</button>
+      </div>
+    </main>
+
+    <!-- Settings / Auth Drawer View -->
+    <section id="settingsView" class="view hidden">
+      <div class="settings-header">
+        <button id="backBtn" class="icon-btn" title="Back to scanner">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </button>
+        <h3>Settings & Account</h3>
+      </div>
+
+      <!-- Account State -->
+      <div class="settings-section">
+        <label class="settings-label">USER ACCOUNT</label>
+        <div id="loggedInState" class="hidden">
+          <div class="user-badge">
+            <span class="user-email" id="userEmailText">user@example.com</span>
+            <button id="logoutBtn" class="btn btn-sm btn-danger">Log Out</button>
+          </div>
+        </div>
+
+        <form id="loginForm" class="login-form">
+          <input type="email" id="loginEmail" placeholder="Email" required class="input">
+          <input type="password" id="loginPassword" placeholder="Password" required class="input">
+          <div id="loginError" class="form-error hidden"></div>
+          <button type="submit" id="submitLoginBtn" class="btn btn-primary">Log In</button>
+        </form>
+      </div>
+
+      <!-- Backend Connection -->
+      <div class="settings-section">
+        <label for="apiUrlInput" class="settings-label">BACKEND API URL</label>
+        <input type="text" id="apiUrlInput" class="input" value="http://127.0.0.1:8000">
+        <button id="saveApiBtn" class="btn btn-secondary mt-2">Save URL</button>
+        <div id="saveApiSuccess" class="form-success hidden">API URL updated!</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>PhishGuard X v1.0.0</span>
+      <span class="status-dot online" id="backendStatusDot" title="Backend Status"></span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

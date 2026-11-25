@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+  </defs>
+  <!-- Shield Background -->
+  <path d="M64 12 L108 30 C108 80, 64 116, 64 116 C64 116, 20 80, 20 30 Z" fill="url(#shieldGrad)" stroke="#38bdf8" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Inner Shield Accent -->
+  <path d="M64 26 L94 40 C94 75, 64 102, 64 102 C64 102, 34 75, 34 40 Z" fill="none" stroke="url(#accentGrad)" stroke-width="2.5" opacity="0.6"/>
+  <!-- Radar / Scanner Check Arc -->
+  <path d="M46 64 L58 76 L84 50" fill="none" stroke="#38bdf8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

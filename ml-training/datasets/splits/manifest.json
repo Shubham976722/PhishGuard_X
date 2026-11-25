@@ -1,0 +1,67 @@
+{
+    "project": "PhishGuard X",
+    "random_seed": 42,
+    "candidate_splits": 300,
+    "target_distribution": {
+        "train": 0.7,
+        "validation": 0.15,
+        "test": 0.15
+    },
+    "dataset_sha256": "f6348600a1d60f7bbc9279796507df940a793f35af6c38499bfd131251384e60",
+    "total_records": 235370,
+    "feature_columns": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "count_dots",
+        "count_hyphens",
+        "count_at",
+        "count_digits",
+        "count_percent",
+        "count_suspicious_words",
+        "count_subdirectories",
+        "has_https",
+        "has_ip_address",
+        "has_punycode"
+    ],
+    "label_mapping": {
+        "0": "phishing",
+        "1": "legitimate"
+    },
+    "splits": {
+        "train": {
+            "records": 164730,
+            "registered_domains": 138395,
+            "phishing": 70375,
+            "legitimate": 94355,
+            "phishing_ratio": 0.42721422934498876,
+            "record_percentage": 69.9877
+        },
+        "validation": {
+            "records": 35345,
+            "registered_domains": 29657,
+            "phishing": 15096,
+            "legitimate": 20249,
+            "phishing_ratio": 0.4271042580280096,
+            "record_percentage": 15.0168
+        },
+        "test": {
+            "records": 35295,
+            "registered_domains": 29657,
+            "phishing": 15049,
+            "legitimate": 20246,
+            "phishing_ratio": 0.42637767389148606,
+            "record_percentage": 14.9955
+        }
+    },
+    "domain_leakage": {
+        "train_validation": 0,
+        "train_test": 0,
+        "validation_test": 0
+    },
+    "split_scores": {
+        "test": 0.001835296734171099,
+        "validation": 0.0020627351659489035
+    }
+}

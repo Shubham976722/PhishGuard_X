@@ -1,0 +1,38 @@
+{
+    "project": "PhishGuard X",
+    "model": "LightGBM",
+    "threshold": 0.19899806637425446,
+    "evaluation_dataset": "test",
+    "test_records": 35295,
+    "feature_count": 14,
+    "features": [
+        "url_length",
+        "hostname_length",
+        "path_length",
+        "query_length",
+        "count_dots",
+        "count_hyphens",
+        "count_at",
+        "count_digits",
+        "count_percent",
+        "count_suspicious_words",
+        "count_subdirectories",
+        "has_https",
+        "has_ip_address",
+        "has_punycode"
+    ],
+    "metrics": {
+        "accuracy": 0.9478963025924352,
+        "precision": 0.9257993811242908,
+        "recall": 0.9542826765898066,
+        "f1_score": 0.9398252674977913,
+        "roc_auc": 0.9831368210482132,
+        "pr_auc": 0.9850452897062492
+    },
+    "confusion_matrix": {
+        "true_positives": 14361,
+        "false_positives": 1151,
+        "true_negatives": 19095,
+        "false_negatives": 688
+    }
+}

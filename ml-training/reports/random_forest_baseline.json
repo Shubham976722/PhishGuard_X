@@ -1,0 +1,25 @@
+{
+    "model": "RandomForestClassifier",
+    "dataset": "validation",
+    "training_records": 164730,
+    "validation_records": 35345,
+    "feature_count": 14,
+    "threshold": 0.5,
+    "training_seconds": 19.35,
+    "accuracy": 0.9613806761918234,
+    "precision": 0.9806090304515226,
+    "recall": 0.9279279279279279,
+    "f1_score": 0.9535414043089071,
+    "roc_auc": 0.9850572547198089,
+    "pr_auc": 0.9855642883552973,
+    "confusion_matrix": [
+        [
+            14008,
+            1088
+        ],
+        [
+            277,
+            19972
+        ]
+    ]
+}

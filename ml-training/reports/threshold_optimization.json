@@ -1,0 +1,74 @@
+{
+    "Random Forest": {
+        "best_f1": {
+            "threshold": 0.47589672066211447,
+            "accuracy": 0.9617201867307964,
+            "precision": 0.9790170791216452,
+            "recall": 0.9303126656067833,
+            "f1_score": 0.954043680581502,
+            "true_positives": 14044,
+            "false_positives": 301,
+            "true_negatives": 19948,
+            "false_negatives": 1052
+        },
+        "target_recall": {
+            "threshold": 0.20463863849758693,
+            "accuracy": 0.9509124345734898,
+            "precision": 0.9352968006776569,
+            "recall": 0.9508479067302597,
+            "f1_score": 0.9430082449167296,
+            "true_positives": 14354,
+            "false_positives": 993,
+            "true_negatives": 19256,
+            "false_negatives": 742
+        }
+    },
+    "XGBoost": {
+        "best_f1": {
+            "threshold": 0.4596256911754608,
+            "accuracy": 0.9617484792757108,
+            "precision": 0.9757026166412848,
+            "recall": 0.9336910439851617,
+            "f1_score": 0.9542346489743416,
+            "true_positives": 14095,
+            "false_positives": 351,
+            "true_negatives": 19898,
+            "false_negatives": 1001
+        },
+        "target_recall": {
+            "threshold": 0.19588851928710938,
+            "accuracy": 0.9498656104116565,
+            "precision": 0.9332726326742976,
+            "recall": 0.9505829358770536,
+            "f1_score": 0.9418482541349436,
+            "true_positives": 14350,
+            "false_positives": 1026,
+            "true_negatives": 19223,
+            "false_negatives": 746
+        }
+    },
+    "LightGBM": {
+        "best_f1": {
+            "threshold": 0.4653054252376221,
+            "accuracy": 0.9617484792757108,
+            "precision": 0.977023462446203,
+            "recall": 0.9323661897191309,
+            "f1_score": 0.9541725984679005,
+            "true_positives": 14075,
+            "false_positives": 331,
+            "true_negatives": 19918,
+            "false_negatives": 1021
+        },
+        "target_recall": {
+            "threshold": 0.19899806637425446,
+            "accuracy": 0.9487339086150799,
+            "precision": 0.9293471234647706,
+            "recall": 0.9523714891361951,
+            "f1_score": 0.940718445331414,
+            "true_positives": 14377,
+            "false_positives": 1093,
+            "true_negatives": 19156,
+            "false_negatives": 719
+        }
+    }
+}
